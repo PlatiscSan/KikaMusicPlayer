@@ -17,6 +17,6 @@ KikaMusicPlayer是一款輕量級的音樂播放器，采用WPF開發，基於do
 1. MaterialDesignThemes 用於界面設計
 2. NAudio 用於讀取和播放媒體
 3. Taglib 用於讀取媒體信息標簽
-4 Fody 用於打包dll文件
-5 Meting4Net 聯網播放框架，用於網絡播放
-6 Microsoft.Xaml.Behaviors.Wpf 用於MVVM框架設計
+4. Fody 用於打包dll文件
+5. Meting4Net 聯網播放框架，用於網絡播放
+6. Microsoft.Xaml.Behaviors.Wpf 用於MVVM框架設計
