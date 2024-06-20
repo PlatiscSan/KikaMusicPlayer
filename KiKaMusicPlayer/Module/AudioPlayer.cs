@@ -114,7 +114,14 @@ namespace KiKaMusicPlayer.Module
 
             try
             {
-                m_song_items.Insert(index, song);
+                if(m_song_items.Count == 0)
+                {
+                    m_song_items.Add(song);
+                }
+                else
+                {
+                    m_song_items.Insert(index, song);
+                }
             }
             catch
             {

@@ -67,6 +67,10 @@ namespace KiKaMusicPlayer.Model
                 }
                 artists = artists.Remove(artists.Length - 1, 1);
             }
+            else
+            {
+                artists = "Unknown Artists";
+            }
 
             m_file_path = file_path;
             m_album = fetcher.Album;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KiKaMusicPlayer.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace KiKaMusicPlayer.View
     /// </summary>
     public partial class LocalMusic : UserControl
     {
+
+        private LocalMusicViewModel m_view_model = new();
         public LocalMusic()
         {
             InitializeComponent();
+            DataContext = m_view_model;
         }
     }
 }
