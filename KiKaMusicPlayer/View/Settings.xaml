@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="KiKaMusicPlayer.View.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KiKaMusicPlayer.View"
+             xmlns:ViewModel="clr-namespace:KiKaMusicPlayer.ViewModel"
+             xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             Style="{StaticResource PageStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0" HorizontalAlignment="Stretch" Header="Music library locations">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <ItemsControl ItemsSource="{Binding Libraries, Mode=OneWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Path=LibraryPath}" Margin="50 0 0 0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Background="Transparent"/>
+                                    <Button Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Right" Background="Transparent" HorizontalAlignment="Right" Margin="10 0 10 0" BorderBrush="Transparent" Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <MaterialDesign:PackIcon Width="20" Height="20" Kind="Remove"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="0 0 20 0" Command="{Binding AddCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <MaterialDesign:PackIcon Width="17" Height="17" Kind="FolderAdd" Margin="5 0 5 0"/>
+                            <TextBlock Text="Add Folder"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Expander>
+        <Expander Grid.Row="1" HorizontalAlignment="Stretch" Header="Personalization">
+            
+        </Expander>
+        <Expander Grid.Row="2" HorizontalAlignment="Stretch" Header="About">
+            <StackPanel>
+                <TextBlock Text="KikaMusicPlayer" Margin="35 5 0 0"/>
+                <TextBlock Text="Version: Alpha" Margin="35 5 0 0"/>
+                <TextBlock Text="Author: Plastic San" Margin="35 5 0 0"/>
+                <TextBlock Text="This is only a test version" Margin="35 5 0 0"/>
+            </StackPanel>
+        </Expander>
+    </Grid>
+</UserControl>

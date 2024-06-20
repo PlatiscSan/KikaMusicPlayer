@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="KiKaMusicPlayer.View.TitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KiKaMusicPlayer.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:Model="clr-namespace:KiKaMusicPlayer.Model"
+             xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid MinWidth="600" MinHeight="50">
+        <TextBlock Text="{Binding Title}" Style="{StaticResource TitleText}"/>
+        <MaterialDesign:SplitButton VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding SplitButtonCommand}" PopupPlacementMode="BottomAndAlignCentres" Visibility="{Binding OpenFileButtonVisbility}">
+            <StackPanel Orientation="Horizontal">
+                <MaterialDesign:PackIcon Kind="FolderOpen" Width="17" Height="17" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0 5 0"/>
+                <TextBlock Text="Open file(s)"/>
+            </StackPanel>
+            <MaterialDesign:SplitButton.PopupContent>
+                <Border BorderBrush="Black" BorderThickness="0.5">
+                    <ListView SelectedIndex="{Binding OpenMode}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <MaterialDesign:PackIcon Kind="{Binding IconKind}" Width="10" Height="10" Margin="5 0 5 0" VerticalAlignment="Center"/>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding HeaderText}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding DescriptionText}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type Model:MenuItemModel}">
+                                <Model:MenuItemModel IconKind="FolderOpen" HeaderText="Open file(s)" DescriptionText="Browse for files to play"/>
+                                <Model:MenuItemModel IconKind="FolderPlus" HeaderText="Open folder" DescriptionText="Choose a folder and play all the media in that folder"/>
+                                <Model:MenuItemModel IconKind="Earth" HeaderText="Open URL" DescriptionText="Enter a URL, and stream media from that address"/>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+                </Border>
+            </MaterialDesign:SplitButton.PopupContent>
+        </MaterialDesign:SplitButton>
+    </Grid>
+</UserControl>
